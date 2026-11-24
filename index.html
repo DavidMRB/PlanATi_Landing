@@ -8,6 +8,18 @@
   <title>PlanATi — Descubre tu próximo plan en Cúcuta</title>
   <link rel="icon" href="assets/marca.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    if (window.location.protocol === 'https:') {
+      window.va = window.va || function () {
+        (window.vaq = window.vaq || []).push(arguments);
+      };
+
+      const analyticsScript = document.createElement('script');
+      analyticsScript.src = '/_vercel/insights/script.js';
+      analyticsScript.async = true;
+      document.head.append(analyticsScript);
+    }
+  </script>
   <script defer src="app.js"></script>
   <script async src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
@@ -28,7 +40,9 @@
     <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
     <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
-    <symbol id="icon-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h6m-6 4h10m-10 3h4"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="icon-bookmark" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4Z"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></symbol>
   </svg>
 
   <div id="inicio" aria-hidden="true"></div>
@@ -253,22 +267,77 @@
     </div>
   </footer>
 
-  <dialog class="dialog" id="plan-dialog" aria-labelledby="plan-dialog-title">
-    <form method="dialog" class="dialog-toolbar">
-      <button class="dialog-close" type="submit" aria-label="Cerrar ficha" autofocus><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
-    </form>
-    <img class="dialog-cover" id="plan-dialog-image" alt="" width="1536" height="1024">
-    <div class="dialog-copy">
-      <p class="section-label" id="plan-dialog-category"></p>
-      <h2 id="plan-dialog-title"></h2>
-      <p id="plan-dialog-description"></p>
-      <div class="dialog-info flex items-center gap-3">
-        <svg class="icon" aria-hidden="true"><use href="#icon-card"/></svg>
-        <p id="plan-dialog-info"></p>
+  <dialog class="dialog place-dialog" id="plan-dialog" aria-labelledby="plan-dialog-title">
+    <header class="place-toolbar">
+      <span class="brand inline-flex items-center"><img src="assets/marca.png" alt="" width="26" height="30">PlanATi</span>
+      <p class="place-path">Explorar <span aria-hidden="true">/</span> Detalle</p>
+      <form method="dialog">
+        <button class="place-back" type="submit" autofocus><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg>Volver a explorar</button>
+      </form>
+    </header>
+
+    <div class="place-banner">
+      <img id="plan-dialog-image" alt="" width="1536" height="1024" decoding="async">
+    </div>
+
+    <div class="place-layout">
+      <section class="place-summary" aria-labelledby="plan-dialog-title">
+        <div class="place-summary-meta">
+          <span class="plan-tag" id="plan-dialog-category"></span>
+          <button class="place-rating" type="button" data-place-jump="plan-reviews">
+            <svg class="icon" aria-hidden="true"><use href="#icon-star"/></svg>
+            <strong id="plan-rating"></strong><span id="plan-review-count"></span>
+          </button>
+        </div>
+        <h2 id="plan-dialog-title"></h2>
+        <p class="place-address"><svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg><span id="plan-address"></span></p>
+        <div class="place-actions">
+          <button class="button button-primary" type="button" data-place-jump="plan-location"><svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>Consultar ubicación</button>
+          <button class="button place-favorite" id="plan-favorite" type="button" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-bookmark"/></svg>Guardar en favoritos</button>
+        </div>
+        <p class="place-demo-note">Vista de demostración con fotos y datos de ejemplo.</p>
+      </section>
+
+      <aside class="place-side" aria-label="Información de la visita">
+        <section class="place-panel" aria-labelledby="plan-hours-title">
+          <h3 id="plan-hours-title"><svg class="icon" aria-hidden="true"><use href="#icon-clock"/></svg>Horarios</h3>
+          <dl class="place-hours" id="plan-hours"></dl>
+        </section>
+        <section class="place-panel" aria-labelledby="plan-location">
+          <h3 id="plan-location" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>Ubicación</h3>
+          <div class="place-map" role="img" aria-label="Mapa esquemático de la ubicación de ejemplo">
+            <span class="place-map-pin"><svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg></span>
+          </div>
+          <p id="plan-location-note"></p>
+        </section>
+      </aside>
+
+      <div class="place-main">
+        <section aria-labelledby="plan-about-title">
+          <h3 id="plan-about-title">Sobre el lugar</h3>
+          <p id="plan-dialog-description"></p>
+        </section>
+        <section aria-labelledby="plan-menu-title">
+          <h3 id="plan-menu-title">Menú destacado</h3>
+          <ul class="place-menu" id="plan-menu"></ul>
+        </section>
+        <section aria-labelledby="plan-reviews">
+          <h3 id="plan-reviews" tabindex="-1">Reseñas de ejemplo</h3>
+          <ul class="place-reviews" id="plan-review-list"></ul>
+        </section>
       </div>
-      <p class="demo-note">Ficha de ejemplo con fotografía ilustrativa.</p>
     </div>
   </dialog>
+
+  <template id="plan-hours-row">
+    <div><dt></dt><dd></dd></div>
+  </template>
+  <template id="plan-menu-item">
+    <li><h4></h4><p></p><strong class="place-price"></strong></li>
+  </template>
+  <template id="plan-review-item">
+    <li><div class="place-review-top"><strong></strong><span></span></div><p></p></li>
+  </template>
 
   <dialog class="dialog video-dialog" id="video-dialog" aria-labelledby="video-dialog-title">
     <div class="video-header flex items-center justify-between gap-3">
