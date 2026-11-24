@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Descubre cómo PlanATi te ayuda a encontrar cafés, actividades y lugares para salir en Cúcuta. Explora el prototipo interactivo.">
+  <title>PlanATi — Descubre tu próximo plan en Cúcuta</title>
+  <link rel="icon" href="assets/marca.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <clipPath id="closing-pin-shape" clipPathUnits="objectBoundingBox">
+        <path clip-rule="evenodd" transform="scale(.00048828125)" d="M1024 522 C1234 522 1407 695 1407 918 C1407 1096 1307 1265 1167 1400 C1109 1469 1074 1495 1021 1495 C963 1495 924 1458 883 1400 C748 1247 640 1073 640 920 C640 694 813 522 1024 522 Z M1024 766 a135 138 0 1 1 0 276 a135 138 0 1 1 0 -276 Z"/>
+      </clipPath>
+    </defs>
+    <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 10.5-8 10.5S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5Z"/></symbol>
+    <symbol id="icon-coffee" viewBox="0 0 24 24"><path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Zm13 1h2a2 2 0 0 1 0 4h-2M3 21h16M8 3v2m4-2v2"/></symbol>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="M11 3a7 7 0 0 0 7 7 7 7 0 0 0-7 7 7 7 0 0 0-7-7 7 7 0 0 0 7-7Zm8 11a4 4 0 0 0 4 4 4 4 0 0 0-4 4 4 4 0 0 0-4-4 4 4 0 0 0 4-4Z"/></symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20.7 15.2A8.7 8.7 0 0 1 8.8 3.3a8.8 8.8 0 1 0 11.9 11.9ZM17 3v6m-3-3h6"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="icon-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h6m-6 4h10m-10 3h4"/></symbol>
+  </svg>
+
+  <div id="inicio" aria-hidden="true"></div>
+  <div class="journey-world" aria-hidden="true">
+    <div class="world-map"></div>
+    <div class="world-route"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="shell header-inner flex items-center justify-between">
+      <a class="brand inline-flex items-center" href="#inicio" aria-label="PlanATi, inicio">
+        <img src="assets/marca.png" alt="" width="28" height="33">
+        <span>PlanATi</span>
+      </a>
+      <nav class="main-nav items-center" id="main-nav" aria-label="Navegación principal">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#explorar">Explorar</a>
+        <a href="#preguntas">Preguntas</a>
+      </nav>
+      <div class="header-actions flex items-center gap-3">
+        <a class="button button-small button-primary" href="#explorar">Ver demo</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+          <svg class="icon" aria-hidden="true"><use href="#icon-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido" class="journey">
+    <section class="scene hero" data-scene aria-labelledby="hero-title">
+      <div class="shell hero-layout">
+        <div class="hero-copy" data-depth=".16">
+          <p class="location inline-flex items-center gap-2">
+            <svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>
+            Cúcuta, Colombia
+          </p>
+          <h1 id="hero-title">Descubre tu próximo plan.</h1>
+          <p class="hero-description">Encuentra cafés, actividades y lugares para salir en Cúcuta. Elige lo que te provoca y revisa dónde ir antes de salir.</p>
+          <div class="hero-actions flex flex-wrap items-center gap-3">
+            <a class="button button-primary" href="#como-funciona">Empezar el recorrido</a>
+            <a class="button button-glass" href="assets/recorrido-planati.mp4" data-video-link>
+              <svg class="icon play-icon" aria-hidden="true"><use href="#icon-play"/></svg>
+              Ver video
+            </a>
+          </div>
+          <p class="hero-note">Prototipo de aplicación web</p>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-orbit" data-depth=".13"></div>
+          <div class="phone" data-depth="-.27" data-drift=".11">
+            <div class="phone-display">
+              <img src="assets/prototipo-movil.jpg" alt="" width="414" height="860" fetchpriority="high">
+            </div>
+          </div>
+          <div class="floating-card floating-location flex items-center gap-3" data-depth="-.39" data-drift=".16">
+            <span class="floating-icon"><svg class="icon"><use href="#icon-pin"/></svg></span>
+            <span><strong>Explora cerca de ti</strong><small>Encuentra el plan en el mapa</small></span>
+          </div>
+          <div class="floating-card floating-cafe flex items-center gap-3" data-depth=".22" data-drift="-.10">
+            <img src="assets/cafe.jpg" alt="" width="49" height="49">
+            <span><strong>Un café con amigos</strong><small>Cafés y brunch</small></span>
+          </div>
+        </div>
+      </div>
+      <div class="shell hero-end">
+        <a class="scroll-link" href="#como-funciona"><svg class="icon" aria-hidden="true"><use href="#icon-chevron"/></svg>Desplázate para explorar</a>
+      </div>
+    </section>
+
+    <section class="scene screen-scene" id="como-funciona" data-scene aria-labelledby="scene-inicio">
+      <div class="shell screen-layout">
+        <div class="screen-copy" data-depth="-.13" data-drift="-.03">
+          <p class="screen-label"><span aria-hidden="true">01</span> Inicio</p>
+          <h2 id="scene-inicio">Encuentra ideas para salir.</h2>
+          <p>Busca lo que te provoca o empieza por una categoría. Encuentra opciones para un café, una salida con amigos o un plan de fin de semana.</p>
+        </div>
+        <figure class="screen-visual" data-depth=".23" data-drift=".13">
+          <div class="screen-window">
+            <div class="browser-top" aria-hidden="true"><i></i><i></i><i></i><span>PlanATi / Inicio</span></div>
+            <div class="screen-picture"><img src="assets/prototipo-inicio.jpg" alt="Inicio del prototipo, con un buscador y categorías como gastronomía, cafés y eventos" width="1120" height="782" loading="lazy" decoding="async"></div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="scene screen-scene screen-reverse" data-scene aria-labelledby="scene-explorar">
+      <div class="shell screen-layout">
+        <div class="screen-copy" data-depth="-.12" data-drift=".04">
+          <p class="screen-label"><span aria-hidden="true">02</span> Explorar</p>
+          <h2 id="scene-explorar">Compara lugares en el mapa.</h2>
+          <p>Filtra por categoría y ubica las opciones en Cúcuta. Mira qué lugares quedan cerca y cuál encaja con tu plan.</p>
+        </div>
+        <figure class="screen-visual" data-depth=".24" data-drift="-.15">
+          <div class="screen-window">
+            <div class="browser-top" aria-hidden="true"><i></i><i></i><i></i><span>PlanATi / Explorar</span></div>
+            <div class="screen-picture"><img src="assets/prototipo-explorar.jpg" alt="Vista Explorar con filtros, lista de lugares y marcadores de ubicación en un mapa de Cúcuta" width="1120" height="748" loading="lazy" decoding="async"></div>
+          </div>
+          <div class="screen-pin" data-depth="-.12" data-drift=".05" aria-hidden="true"><svg class="icon"><use href="#icon-pin"/></svg></div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="scene screen-scene screen-detail" data-scene aria-labelledby="scene-detalle">
+      <div class="shell screen-layout">
+        <div class="screen-copy" data-depth="-.12" data-drift="-.04">
+          <p class="screen-label"><span aria-hidden="true">03</span> Detalle</p>
+          <h2 id="scene-detalle">Revisa la ficha antes de salir.</h2>
+          <p>Abre el lugar que te interesa y consulta sus horarios, ubicación y menú para decidir si te queda bien.</p>
+        </div>
+        <figure class="screen-visual" data-depth=".24" data-drift=".14">
+          <div class="screen-window">
+            <div class="browser-top" aria-hidden="true"><i></i><i></i><i></i><span>PlanATi / Detalle</span></div>
+            <div class="screen-picture"><img src="assets/prototipo-detalle.jpg" alt="Ficha de Bocaditos Café con foto, horarios y descripción del lugar" width="1120" height="791" loading="lazy" decoding="async"></div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="demo" id="explorar" aria-labelledby="explorar-title">
+      <div class="shell demo-layout">
+        <div class="section-intro">
+          <div>
+            <p class="section-label">Explora Cúcuta</p>
+            <h2 id="explorar-title">¿Qué se te antoja hoy?</h2>
+          </div>
+          <p>Elige una categoría y abre una ficha para probar cómo se encuentran planes en PlanATi.</p>
+        </div>
+        <div class="demo-toolbar">
+          <div class="filters flex flex-wrap gap-2" role="group" aria-label="Filtrar planes por categoría" hidden>
+            <button class="filter" type="button" data-filter="todos" aria-pressed="true">Todos</button>
+            <button class="filter" type="button" data-filter="cafes" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-coffee"/></svg>Cafés</button>
+            <button class="filter" type="button" data-filter="experiencias" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-sparkles"/></svg>Experiencias</button>
+            <button class="filter" type="button" data-filter="noche" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-moon"/></svg>Vida nocturna</button>
+          </div>
+          <p class="demo-note" id="demo-status" role="status">3 planes de ejemplo del prototipo.</p>
+        </div>
+        <div class="plan-grid" id="planes">
+          <article class="plan-card" data-category="cafes" data-plan="cafe">
+            <div class="plan-media">
+              <img src="assets/explora-cafe.jpg" alt="Dos amigos compartiendo café y un pan dulce junto a una ventana" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="plan-content">
+              <span class="plan-tag tag-cafe"><svg class="icon" aria-hidden="true"><use href="#icon-coffee"/></svg>Cafés</span>
+              <h3>Café Caobos</h3>
+              <p>Café de origen y algo dulce para ponerse al día.</p>
+              <button class="plan-link" type="button" aria-label="Ver ficha de Café Caobos" hidden>Ver ficha</button>
+            </div>
+          </article>
+          <article class="plan-card" data-category="experiencias" data-plan="brunch">
+            <div class="plan-media">
+              <img src="assets/explora-ceramica.jpg" alt="Manos pintando un cuenco de cerámica junto a café y un plato de brunch" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="plan-content">
+              <span class="plan-tag tag-experience"><svg class="icon" aria-hidden="true"><use href="#icon-sparkles"/></svg>Experiencias</span>
+              <h3>Brunch &amp; Cerámica</h3>
+              <p>Un brunch con un taller de pintura en cerámica.</p>
+              <button class="plan-link" type="button" aria-label="Ver ficha de Brunch y Cerámica" hidden>Ver ficha</button>
+            </div>
+          </article>
+          <article class="plan-card" data-category="noche" data-plan="noche">
+            <div class="plan-media">
+              <img src="assets/explora-noche.jpg" alt="Cócteles y tapas en una terraza con vistas a la ciudad al atardecer" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="plan-content">
+              <span class="plan-tag tag-night"><svg class="icon" aria-hidden="true"><use href="#icon-moon"/></svg>Vida nocturna</span>
+              <h3>Sky Bar Ventura</h3>
+              <p>Cócteles y tapas para salir con amigos por la noche.</p>
+              <button class="plan-link" type="button" aria-label="Ver ficha de Sky Bar Ventura" hidden>Ver ficha</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene questions" id="preguntas" data-scene aria-labelledby="questions-title">
+      <div class="shell questions-layout">
+        <h2 id="questions-title" data-depth=".15" data-drift="-.05">Preguntas frecuentes</h2>
+        <div class="faq-list" data-depth="-.14" data-drift=".04">
+          <details>
+            <summary>¿Qué es PlanATi?<svg class="icon" aria-hidden="true"><use href="#icon-chevron"/></svg></summary>
+            <p>Es una propuesta de aplicación web que reúne lugares, actividades y experiencias de Cúcuta en un solo sitio. Su objetivo es facilitar la búsqueda y dar visibilidad a los establecimientos locales.</p>
+          </details>
+          <details>
+            <summary>¿Dónde puedo probarla?<svg class="icon" aria-hidden="true"><use href="#icon-chevron"/></svg></summary>
+            <p>En la <a href="#explorar">demo de esta página</a> puedes filtrar planes de ejemplo y abrir sus fichas. En el recorrido también puedes ver las pantallas del prototipo.</p>
+          </details>
+          <details>
+            <summary>¿Qué información incluirían las fichas?<svg class="icon" aria-hidden="true"><use href="#icon-chevron"/></svg></summary>
+            <p>La propuesta contempla ubicación, horarios, menús, precios y reseñas para ayudarte a elegir un lugar.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene closing" data-scene aria-labelledby="closing-title">
+      <div class="shell closing-layout">
+        <div class="closing-symbol" data-depth="-.24" aria-hidden="true">
+          <span class="closing-mark">
+            <img src="assets/icono-planati.jpg" alt="" width="2048" height="2048" loading="lazy" decoding="async" style="clip-path: url(#closing-pin-shape)">
+          </span>
+        </div>
+        <div class="closing-copy" data-depth=".12">
+          <h2 id="closing-title">Así se vería tu próximo plan.</h2>
+          <p>Mira el video del prototipo, desde la búsqueda hasta la ficha del lugar.</p>
+          <a class="button button-primary" href="assets/recorrido-planati.mp4" data-video-link>
+          <svg class="icon play-icon" aria-hidden="true"><use href="#icon-play"/></svg>
+          Ver video del recorrido
+        </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-layout">
+      <a class="brand inline-flex items-center" href="#inicio" aria-label="PlanATi, volver al inicio">
+        <img src="assets/marca.png" alt="" width="25" height="29"><span>PlanATi</span>
+      </a>
+      <p>Proyecto académico de Ingeniería de Software · FESC</p>
+      <a class="footer-link" href="#inicio">Volver arriba</a>
+    </div>
+  </footer>
+
+  <dialog class="dialog" id="plan-dialog" aria-labelledby="plan-dialog-title">
+    <form method="dialog" class="dialog-toolbar">
+      <button class="dialog-close" type="submit" aria-label="Cerrar ficha" autofocus><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+    </form>
+    <img class="dialog-cover" id="plan-dialog-image" alt="" width="1536" height="1024">
+    <div class="dialog-copy">
+      <p class="section-label" id="plan-dialog-category"></p>
+      <h2 id="plan-dialog-title"></h2>
+      <p id="plan-dialog-description"></p>
+      <div class="dialog-info flex items-center gap-3">
+        <svg class="icon" aria-hidden="true"><use href="#icon-card"/></svg>
+        <p id="plan-dialog-info"></p>
+      </div>
+      <p class="demo-note">Ficha de ejemplo con fotografía ilustrativa.</p>
+    </div>
+  </dialog>
+
+  <dialog class="dialog video-dialog" id="video-dialog" aria-labelledby="video-dialog-title">
+    <div class="video-header flex items-center justify-between gap-3">
+      <h2 id="video-dialog-title">Recorrido de PlanATi</h2>
+      <form method="dialog">
+        <button class="dialog-close" type="submit" aria-label="Cerrar video" autofocus><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+      </form>
+    </div>
+    <video controls playsinline preload="none" aria-label="Video del recorrido del prototipo">
+      <source src="assets/recorrido-planati.mp4" type="video/mp4">
+    </video>
+    <details class="transcript">
+      <summary>Leer descripción del video</summary>
+      <ol>
+        <li>En Inicio, elige un tipo de plan para salir en Cúcuta.</li>
+        <li>En Explorar, filtra los lugares por categoría.</li>
+        <li>Abre la ficha del lugar y revisa su información antes de salir.</li>
+      </ol>
+    </details>
+  </dialog>
+</body>
+</html>
